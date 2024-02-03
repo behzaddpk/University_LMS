@@ -1,0 +1,86 @@
+{% extends 'school/adminbase.html' %}
+
+{% load widget_tweaks %}
+
+
+
+{% block content %}
+
+<head>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <style media="screen">
+        a:link {
+            text-decoration: none;
+        }
+
+        h6 {
+            text-align: center;
+        }
+
+        .row {
+            margin: 100px;
+        }
+
+        
+    </style>
+
+</head>
+
+
+
+
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Upload Lecture</h6>
+
+                </div>
+
+
+                <form method="POST" enctype="multipart/form-data" style="padding: 10px;">
+                    {% csrf_token %}
+                    <!-- Name Input -->
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" class="form-control" name="title" placeholder="Write a Title">
+                    </div>
+                    
+                    <!-- Email Input -->
+                    <div class="form-group">
+                        <label for="Subject">Subject:</label>
+                        <select class="form-control" id="subject" name="subject" required>
+                            <option  value="">Choose One</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Electrical Engineering">Electrical Engineering</option>
+                            <option value="Mechanical Engineering">Mechanical Engineering</option>
+                            <option value="Information Technology">Information Technology</option>
+                          </select>
+                    </div>
+                    
+                    <!-- Password Input -->
+                    <div class="form-group">
+                        <label for="File">File:</label>
+                        <input type="file" class="form-control" id="password" name="file">
+                    </div>
+                    <input type="hidden" name="user" value="{{request.user}}">
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                
+
+            </div>
+        </div>
+
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,74 @@
+{% extends 'school/studentbase.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+
+{% block content %}
+
+<head>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <style media="screen">
+        a:link {
+            text-decoration: none;
+        }
+
+        h6 {
+            text-align: center;
+        }
+
+        .row {
+            margin: 100px;
+        }
+
+        
+    </style>
+
+</head>
+
+
+
+
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h6 class="panel-title">{{cl}} Lecture</h6>
+
+                </div>
+
+                {% if lectures %}
+                <ul>
+                  {% for lecture in lectures %}
+                    <li>
+                      <h3>{{ lecture.title }}</h3>
+                      <p>Subject: {{ lecture.subject }}</p>
+                      <p>Date Uploaded: {{ lecture.date_uploaded }}</p>
+                      <p>Uploaded by: {{ lecture.uploaded_by.get_name }}</p>
+                      <video width="320" height="240" controls>
+                        <source src="{{ lecture.video_file.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <p>No lectures available for {{ cl }}.</p>
+              {% endif %}
+                
+
+            </div>
+        </div>
+
+
+
+
+
+{% endblock content %}
